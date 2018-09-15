@@ -90,9 +90,7 @@ public class DynamoDBAccess: DatabaseInterface {
         let result = try db.query(
             Dynamodb.QueryInput(
                 keyConditions: conditions,
-                tableName: "SpotifyHistory",
-                scanIndexForward: false,
-                limit: 1
+                tableName: "SpotifyHistory"
             )
         )
         guard let items = result.items else {
