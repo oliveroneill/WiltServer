@@ -17,3 +17,8 @@ into Hexaville soon. The changes needed are:
     - `RUN add-apt-repository ppa:ubuntu-toolchain-r/test`
     - `RUN apt-get install -y clang-3.8`
     - `RUN apt-get install -y gcc-7 g++-7`
+
+# Usage
+```bash
+curl -i -G -H "Content-Type: application/graphql" https://<ID>.execute-api.<REGION>.amazonaws.com/staging/ --data-urlencode 'query={ history(userId: "<USER-ID>") { userId date primaryArtist name artists trackId } }'
+```
