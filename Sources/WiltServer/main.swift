@@ -19,7 +19,10 @@ router.use(.get, "/") { request, context in
     let handler = PlayHistoryGraphQLHandler()
     let result = try handler.handle(queryItems: request.queryItems)
     return Response(
-        headers: ["Content-Type": "application/graphql"],
+        headers: [
+            "Content-Type": "application/graphql",
+            "Access-Control-Allow-Origin": "*"
+        ],
         body: result
     )
 }
