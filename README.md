@@ -6,19 +6,35 @@ to Lambda and uses API Gateway for making HTTP requests. GraphQL is used for
 making queries.
 
 # Installation
-1. Install Hexaville as specified in [it's README](https://github.com/noppoMan/Hexaville)
-2. Create a `Hexavillefile.yml` to deploy the server to your AWS account. This
-is also described in their README.
-3. Modify the Dockerfile installed in `~/.hexaville`. This is an unfortunate
-step to get Swift NIO building for AWS Lambda. Specifically it requires a newer
-version of GCC due to requiring `stdatomic.h`. Hopefully this will get merged
-into Hexaville soon. The changes needed are:
-    - `RUN apt-get install -y software-properties-common`
-    - `RUN add-apt-repository ppa:ubuntu-toolchain-r/test`
-    - `RUN apt-get install -y clang-3.8`
-    - `RUN apt-get install -y gcc-7 g++-7`
+Unfortunately there were a few changes to Hexaville to get this program
+to deploy. I've made pull requests for each of these:
+- [Hexaville changes](https://github.com/noppoMan/Hexaville/pull/102)
+- [HexavilleFramework changes](https://github.com/noppoMan/HexavilleFramework/pull/18)
+
+You can either make these changes yourself manually on your installed version
+of Hexaville or use my forks in the meantime.
+
+Specifically, the issues were:
+1. GraphQL requires URL encoded parameters when using GET requests and
+the encoding was getting undone by API Gateway
+2. Graphiti uses Swift NIO which required a newer version of gcc
+
+# Deployment
+```bash
+hexaville deploy WiltServer
+```
 
 # Usage
 ```bash
 curl -i -G -H "Content-Type: application/graphql" https://<ID>.execute-api.<REGION>.amazonaws.com/staging/ --data-urlencode 'query={ history(userId: "<USER-ID>") { userId date primaryArtist name artists trackId } }'
 ```
+
+# DynamoDB
+This server will make queries to a table called `SpotifyHistory`. It's
+columns are:
+- user_id
+- date
+- artists
+- name
+- primary_artist
+- track_id
