@@ -5,6 +5,9 @@ The server uses [Hexaville](https://github.com/noppoMan/Hexaville) to deploy
 to Lambda and uses API Gateway for making HTTP requests. GraphQL is used for
 making queries.
 
+# Dependencies
+- [Hexaville](https://github.com/noppoMan/Hexaville)
+
 # Installation
 Unfortunately there were a few changes to Hexaville to get this program
 to deploy. I've made pull requests for each of these:
