@@ -1,4 +1,11 @@
 # Wilt - What I Listen To
+
+[![Build Status](https://travis-ci.org/oliveroneill/WiltServer.svg?branch=master)](https://travis-ci.org/oliveroneill/WiltServer)
+[![Platform](https://img.shields.io/badge/Swift-4.1-orange.svg)](https://img.shields.io/badge/Swift-4.1-orange.svg)
+[![Swift Package Manager](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager)
+![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
+![Linux](https://img.shields.io/badge/os-linux-green.svg?style=flat)
+
 This is a GraphQL server for querying a user's play history.
 
 The server uses [Hexaville](https://github.com/noppoMan/Hexaville) to deploy
