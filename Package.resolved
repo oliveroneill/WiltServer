@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "AWSSDKSwiftCore",
-        "repositoryURL": "https://github.com/noppoMan/aws-sdk-swift-core.git",
-        "state": {
-          "branch": null,
-          "revision": "48298a7bec6c838553f314cb48c81f2a363e8253",
-          "version": "1.0.10"
-        }
-      },
-      {
         "package": "BigInt",
         "repositoryURL": "https://github.com/attaswift/BigInt",
         "state": {
@@ -83,15 +74,6 @@
         }
       },
       {
-        "package": "SwiftAWSDynamodb",
-        "repositoryURL": "https://github.com/swift-aws/dynamodb.git",
-        "state": {
-          "branch": null,
-          "revision": "c559b7df021ea1af15c57beca5244656a7df5030",
-          "version": "1.1.6"
-        }
-      },
-      {
         "package": "Graphiti",
         "repositoryURL": "https://github.com/noahemmet/Graphiti.git",
         "state": {
@@ -116,15 +98,6 @@
           "branch": "master",
           "revision": "8b1fa3da933c8eeb0a40f599c054780cb00a67cf",
           "version": null
-        }
-      },
-      {
-        "package": "HypertextApplicationLanguage",
-        "repositoryURL": "https://github.com/noppoMan/HypertextApplicationLanguage.git",
-        "state": {
-          "branch": null,
-          "revision": "e6216c13fd510e31e70e6f409936f1a656db1f33",
-          "version": "1.0.1"
         }
       },
       {
