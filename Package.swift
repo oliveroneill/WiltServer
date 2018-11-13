@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/oliveroneill/HexavilleFramework.git", .branch("master")),
-        .package(url: "https://github.com/GraphQLSwift/Graphiti.git", .upToNextMajor(from: "0.6.0")),
+        .package(url: "https://github.com/noahemmet/Graphiti.git", .branch("master")),
         .package(url: "https://github.com/oliveroneill/BigQuerySwift.git", .branch("master")),
     ],
     targets: [
