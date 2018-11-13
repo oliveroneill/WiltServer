@@ -1,7 +1,7 @@
 import Foundation
 import Graphiti
 import GraphQL
-import SwiftAWSDynamodb
+import BigQuerySwift
 import NIO
 
 /// GraphQL Date specification
@@ -26,6 +26,15 @@ public struct PlayRecord: MapFallibleRepresentable {
     let trackId: String
 }
 
+public struct BigQueryPlayRecord: Codable, Equatable {
+    let userId: String
+    let date: String
+    let primaryArtist: String
+    let name: String
+    let artists: [String]
+    let trackId: String
+}
+
 /// Search query for history
 struct SearchArguments: Arguments {
     let userId: String
@@ -44,6 +53,8 @@ struct SearchArguments: Arguments {
 /// - unexpectedFailure: Something went wrong with query
 public enum PlayHistoryQueryError: Error {
     case unexpectedFailure
+    case bigQueryError([BigQueryError])
+    case unexpectedTimestamp(String)
 }
 
 /// Errors that occur when validating HTTP request
@@ -60,59 +71,70 @@ public protocol DatabaseInterface {
 }
 
 /// DynamoDB implementation for making database queries
-public class DynamoDBAccess: DatabaseInterface {
-    private let db = Dynamodb()
-    public init() {}
+public class BigQueryAccess: DatabaseInterface {
+    private let db: BigQueryClient<BigQueryPlayRecord>
+    public init(projectId: String) throws {
+        let s = DispatchSemaphore(value: 0)
+        var response: AuthResponse?
+        let provider = BigQueryAuthProvider()
+        try provider.getAuthenticationToken { r in
+            response = r
+            s.signal()
+        }
+        s.wait()
+        guard let r = response else {
+            fatalError("Unexpected empty response")
+        }
+        switch r {
+        case .token(let token):
+            self.db = BigQueryClient(
+                authenticationToken: token,
+                projectID: projectId,
+                datasetID: "wilt_play_history",
+                tableName: "play_history"
+            )
+        case .error(let e):
+            throw e
+        }
+    }
+
     public func getHistory(userId: String, start: Date?, end: Date?) throws -> [PlayRecord] {
+        let s = DispatchSemaphore(value: 0)
         // Create query
-        var conditions = [
-            "user_id": Dynamodb.Condition(
-                comparisonOperator: .eq,
-                attributeValueList: [Dynamodb.AttributeValue(s: userId)]
-            )
-        ]
-        if let start = start {
-            conditions["date"] = Dynamodb.Condition(
-                comparisonOperator: .ge,
-                attributeValueList: [
-                    Dynamodb.AttributeValue(n: "\(start.timeIntervalSince1970)")
-                ]
-            )
+        let query = "SELECT * FROM wilt_play_history.play_history WHERE user_id = '\(userId)' ORDER BY date ASC"
+        var response: QueryCallResponse<BigQueryPlayRecord>?
+        try db.query(query) { (r: QueryCallResponse<BigQueryPlayRecord>) in
+            response = r
+            s.signal()
         }
-        if let end = end {
-            conditions["date"] = Dynamodb.Condition(
-                comparisonOperator: .le,
-                attributeValueList: [
-                    Dynamodb.AttributeValue(n: "\(end.timeIntervalSince1970)")
-                ]
-            )
+        s.wait()
+        guard let r = response else {
+            fatalError("Unexpected empty query response")
         }
-        let result = try db.query(
-            Dynamodb.QueryInput(
-                keyConditions: conditions,
-                tableName: "WiltPlayHistory"
-            )
-        )
-        guard let items = result.items else {
-            throw PlayHistoryQueryError.unexpectedFailure
-        }
-        // Map items to PlayRecord
-        return try items.map {
-            guard let userId = $0["user_id"]?.s, let timestamp = $0["date"]?.n,
-                let primaryArtist = $0["primary_artist"]?.s,
-                let name = $0["name"]?.s, let artists = $0["artists"]?.ss,
-                let trackId = $0["track_id"]?.s,
-                let interval = TimeInterval(timestamp) else {
+        switch r {
+        case .error(let e):
+            throw e
+        case .queryResponse(let result):
+            guard let rtn = result.rows else {
+                guard let errors = result.errors else {
                     throw PlayHistoryQueryError.unexpectedFailure
+                }
+                throw PlayHistoryQueryError.bigQueryError(errors)
             }
-            return PlayRecord(
-                userId: userId,
-                date: Date(timeIntervalSince1970: interval),
-                primaryArtist: primaryArtist,
-                name: name,
-                artists: artists,
-                trackId: trackId
-            )
+            // Map items to PlayRecord
+            return try rtn.map {
+                guard let interval = TimeInterval($0.date) else {
+                    throw PlayHistoryQueryError.unexpectedTimestamp($0.date)
+                }
+                return PlayRecord(
+                    userId: $0.userId,
+                    date: Date(timeIntervalSince1970: interval),
+                    primaryArtist: $0.primaryArtist,
+                    name: $0.name,
+                    artists: $0.artists,
+                    trackId: $0.trackId
+                )
+            }
         }
     }
 }
@@ -125,7 +147,7 @@ public class PlayHistoryGraphQLHandler {
     /// Create handler for responding to GraphQL queries
     ///
     /// - Parameter dao: Optionally specify the datbase access object
-    public init(dao: DatabaseInterface = DynamoDBAccess()) {
+    public init(dao: DatabaseInterface) {
         // Define GraphQL schema
         self.schema = try! Schema<NoRoot, NoContext, BasicEventLoop> { schema in
             // Date specification

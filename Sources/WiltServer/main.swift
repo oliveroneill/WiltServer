@@ -11,12 +11,18 @@ import Foundation
 import HexavilleFramework
 import WiltLib
 
+// Check that environment variable has been set
+guard let projectId = ProcessInfo.processInfo.environment["BIGQUERY_PROJECT_ID"] else {
+    fatalError("Project ID not set")
+}
+
 let app = HexavilleFramework()
 
 var router = Router()
 
 router.use(.get, "/") { request, context in
-    let handler = PlayHistoryGraphQLHandler()
+    let db = try BigQueryAccess(projectId: projectId)
+    let handler = try PlayHistoryGraphQLHandler(dao: db)
     let result = try handler.handle(queryItems: request.queryItems)
     return Response(
         headers: [

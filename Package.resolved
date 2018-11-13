@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Auth",
+        "repositoryURL": "https://github.com/saga-dash/auth-library-swift.git",
+        "state": {
+          "branch": "master",
+          "revision": "26afd1ad24463fa22168ae9e6c25df3bd9b42884",
+          "version": null
+        }
+      },
+      {
         "package": "AWSSDKSwiftCore",
         "repositoryURL": "https://github.com/noppoMan/aws-sdk-swift-core.git",
         "state": {
@@ -11,12 +20,39 @@
         }
       },
       {
+        "package": "BigInt",
+        "repositoryURL": "https://github.com/attaswift/BigInt",
+        "state": {
+          "branch": null,
+          "revision": "018a5925f60f9e0523edd261de394a0898fe95b7",
+          "version": "3.1.0"
+        }
+      },
+      {
+        "package": "BigQuerySwift",
+        "repositoryURL": "https://github.com/oliveroneill/BigQuerySwift.git",
+        "state": {
+          "branch": "master",
+          "revision": "3a7e00e06b1c40e82133030636d156ba8159a8ae",
+          "version": null
+        }
+      },
+      {
         "package": "CHTTPParser",
         "repositoryURL": "https://github.com/Zewo/CHTTPParser.git",
         "state": {
           "branch": null,
           "revision": "88306ab33bb316b2eedd39c90f4be8f4ebf65a11",
           "version": "0.14.0"
+        }
+      },
+      {
+        "package": "CircuitBreaker",
+        "repositoryURL": "https://github.com/IBM-Swift/CircuitBreaker.git",
+        "state": {
+          "branch": null,
+          "revision": "81581e3fb094ab4879aa2c5ce54201f1dbce0a7f",
+          "version": "5.0.1"
         }
       },
       {
@@ -35,6 +71,15 @@
           "branch": null,
           "revision": "eb876a758733166a4fb20f3f0a17b480c5ea563e",
           "version": "3.4.3"
+        }
+      },
+      {
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "874280173e082cdd7ac6602be235914efe3f4dbc",
+          "version": "0.13.0"
         }
       },
       {
@@ -83,6 +128,15 @@
         }
       },
       {
+        "package": "LoggerAPI",
+        "repositoryURL": "https://github.com/IBM-Swift/LoggerAPI.git",
+        "state": {
+          "branch": null,
+          "revision": "5041f2673aa75d6e973d9b6bd3956bc5068387c8",
+          "version": "1.7.3"
+        }
+      },
+      {
         "package": "Prorsum",
         "repositoryURL": "https://github.com/noppoMan/Prorsum.git",
         "state": {
@@ -92,21 +146,21 @@
         }
       },
       {
-        "package": "ProrsumNet",
-        "repositoryURL": "https://github.com/noppoman/ProrsumNet.git",
-        "state": {
-          "branch": null,
-          "revision": "941e0c65df620467130e9eb2496a3c1275c1d307",
-          "version": "0.1.3"
-        }
-      },
-      {
         "package": "Runtime",
         "repositoryURL": "https://github.com/wickwirew/Runtime.git",
         "state": {
           "branch": null,
           "revision": "23357609f0df427d870bb4bd22ac14e0a4ea1346",
           "version": "0.7.1"
+        }
+      },
+      {
+        "package": "SipHash",
+        "repositoryURL": "https://github.com/attaswift/SipHash",
+        "state": {
+          "branch": null,
+          "revision": "e325083424688055363bbfcb7f1a440d7d7a1bae",
+          "version": "1.2.2"
         }
       },
       {
@@ -134,6 +188,24 @@
           "branch": null,
           "revision": "37f4a7f863f6fe76ce44fc0023f331eea0089beb",
           "version": "5.2.0"
+        }
+      },
+      {
+        "package": "SwiftyBase64",
+        "repositoryURL": "https://github.com/timburks/SwiftyBase64",
+        "state": {
+          "branch": null,
+          "revision": "01f2f5c4886d0b8d7cb8c0e96b2aefccd1c7ccd8",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "SwiftyRequest",
+        "repositoryURL": "https://github.com/IBM-Swift/SwiftyRequest.git",
+        "state": {
+          "branch": null,
+          "revision": "617de05a8bea00acf0c1fd68fd8c42aa7a42c036",
+          "version": "1.1.3"
         }
       }
     ]
