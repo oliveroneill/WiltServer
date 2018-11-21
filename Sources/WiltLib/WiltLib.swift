@@ -27,12 +27,12 @@ public struct PlayRecord: MapFallibleRepresentable {
 }
 
 public struct BigQueryPlayRecord: Codable, Equatable {
-    let userId: String
+    let user_id: String
     let date: String
-    let primaryArtist: String
+    let primary_artist: String
     let name: String
     let artists: [String]
-    let trackId: String
+    let track_id: String
 }
 
 /// Search query for history
@@ -127,12 +127,12 @@ public class BigQueryAccess: DatabaseInterface {
                     throw PlayHistoryQueryError.unexpectedTimestamp($0.date)
                 }
                 return PlayRecord(
-                    userId: $0.userId,
+                    userId: $0.user_id,
                     date: Date(timeIntervalSince1970: interval),
-                    primaryArtist: $0.primaryArtist,
+                    primaryArtist: $0.primary_artist,
                     name: $0.name,
                     artists: $0.artists,
-                    trackId: $0.trackId
+                    trackId: $0.track_id
                 )
             }
         }
