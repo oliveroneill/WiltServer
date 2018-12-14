@@ -12,6 +12,15 @@ The server uses [Hexaville](https://github.com/noppoMan/Hexaville) to deploy
 to Lambda and uses API Gateway for making HTTP requests. GraphQL is used for
 making queries.
 
+# Status
+The master branch is no longer up to date with
+[WiltCollector](https://github.com/oliveroneill/WiltCollector)
+as it has now moved to Google Cloud's BigQuery. There is a branch called
+`bigquery` that is almost working, however in the end I decided not to use
+Swift and AWS due to dependency issues. There's a new project called
+[wilt-cloud-functions](https://github.com/oliveroneill/wilt-cloud-functions)
+that supersedes this one.
+
 # Dependencies
 - [Hexaville](https://github.com/noppoMan/Hexaville)
 
