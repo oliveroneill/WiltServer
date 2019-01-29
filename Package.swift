@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "WiltLib", targets: ["WiltLib"])
     ],
     dependencies: [
-        .package(url: "https://github.com/oliveroneill/HexavilleFramework.git", .branch("master")),
+        .package(url: "https://github.com/noppoMan/HexavilleFramework.git", .branch("master")),
         .package(url: "https://github.com/noahemmet/Graphiti.git", .branch("master")),
         .package(url: "https://github.com/oliveroneill/BigQuerySwift.git", .branch("master")),
     ],

@@ -20,7 +20,7 @@ let app = HexavilleFramework()
 
 var router = Router()
 
-router.use(.get, "/") { request, context in
+router.use(.GET, "/") { request, context in
     let db = try BigQueryAccess(projectId: projectId)
     let handler = PlayHistoryGraphQLHandler(dao: db)
     let result = try handler.handle(queryItems: request.queryItems)
