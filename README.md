@@ -15,20 +15,6 @@ making queries.
 # Dependencies
 - [Hexaville](https://github.com/noppoMan/Hexaville)
 
-# Installation
-Unfortunately there were a few changes to Hexaville to get this program
-to deploy. I've made pull requests for each of these:
-- [Hexaville changes](https://github.com/noppoMan/Hexaville/pull/102)
-- [HexavilleFramework changes](https://github.com/noppoMan/HexavilleFramework/pull/18)
-
-You can either make these changes yourself manually on your installed version
-of Hexaville or use my forks in the meantime.
-
-Specifically, the issues were:
-1. GraphQL requires URL encoded parameters when using GET requests and
-the encoding was getting undone by API Gateway
-2. Graphiti uses Swift NIO which required a newer version of gcc
-
 # Deployment
 ```bash
 hexaville deploy WiltServer
