@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Core",
+        "repositoryURL": "https://github.com/vapor/core.git",
+        "state": {
+          "branch": null,
+          "revision": "96ce86ebf9198328795c4b9cb711489460be083c",
+          "version": "3.4.4"
+        }
+      },
+      {
+        "package": "GraphQL",
+        "repositoryURL": "https://github.com/noahemmet/GraphQL.git",
+        "state": {
+          "branch": "spm",
+          "revision": "9963dc1ca36d6a1353748ab74a5acffdc31aa58b",
+          "version": null
+        }
+      },
+      {
+        "package": "Runtime",
+        "repositoryURL": "https://github.com/noahemmet/Runtime.git",
+        "state": {
+          "branch": "swift-env",
+          "revision": "c281655e4d5e29c12dbcb8c51b11c158796464aa",
+          "version": null
+        }
+      },
+      {
+        "package": "swift-nio",
+        "repositoryURL": "https://github.com/apple/swift-nio.git",
+        "state": {
+          "branch": null,
+          "revision": "176dd6e8564d60e936b76f3a896d667ae3acba31",
+          "version": "1.10.0"
+        }
+      },
+      {
+        "package": "swift-nio-zlib-support",
+        "repositoryURL": "https://github.com/apple/swift-nio-zlib-support.git",
+        "state": {
+          "branch": null,
+          "revision": "37760e9a52030bb9011972c5213c3350fa9d41fd",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

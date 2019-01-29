@@ -10,13 +10,13 @@ let package = Package(
         .library(name: "WiltLib", targets: ["WiltLib"])
     ],
     dependencies: [
-        .package(url: "https://github.com/oliveroneill/HexavilleFramework.git", .branch("master")),
-        .package(url: "https://github.com/GraphQLSwift/Graphiti.git", .upToNextMajor(from: "0.6.0")),
-        .package(url: "https://github.com/swift-aws/dynamodb.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/noppoMan/HexavilleFramework.git", .branch("master")),
+        .package(url: "https://github.com/noahemmet/Graphiti.git", .branch("master")),
+        .package(url: "https://github.com/oliveroneill/BigQuerySwift.git", .branch("master")),
     ],
     targets: [
         .target(name: "WiltServer", dependencies: ["HexavilleFramework", "WiltLib"]),
-        .target(name: "WiltLib", dependencies: ["Graphiti", "SwiftAWSDynamodb"]),
+        .target(name: "WiltLib", dependencies: ["Graphiti", "BigQuerySwift"]),
         .testTarget(
             name: "WiltLibTests",
             dependencies: ["WiltLib"]),

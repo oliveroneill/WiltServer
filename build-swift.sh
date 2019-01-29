@@ -4,6 +4,10 @@ set -e
 
 DEST=${DEST}/${BUILD_CONFIGURATION}
 swift package update
+swift package edit ProrsumNet || true
+swift package edit BigInt || true
+swift package edit Graphiti || true
+swift package edit GraphQL || true
 swift build -c ${BUILD_CONFIGURATION}
 cp -r /${SWIFTFILE}/usr/lib/swift/linux/*.so $DEST
 cp /usr/lib/x86_64-linux-gnu/libicudata.so $DEST/libicudata.so.52
