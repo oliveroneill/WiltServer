@@ -13,11 +13,10 @@ to Lambda and uses API Gateway for making HTTP requests. GraphQL is used for
 making queries.
 
 # Status
-The master branch is no longer up to date with
-[WiltCollector](https://github.com/oliveroneill/WiltCollector)
-as it has now moved to Google Cloud's BigQuery. There is a branch called
-`bigquery` that is almost working, however in the end I decided not to use
-Swift and AWS due to dependency issues. There's a new project called
+Hexaville is still a relatively new tool and I've had issues keeping things
+working. In order to make deployment easier, I've migrated to Google Cloud
+Functions using node.js and this project is no longer maintained. There's a new
+project called
 [wilt-cloud-functions](https://github.com/oliveroneill/wilt-cloud-functions)
 that supersedes this one.
 
